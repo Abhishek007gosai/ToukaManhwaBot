@@ -5,25 +5,20 @@ from loguru import logger
 from pyrogram import idle
 import random, os, shutil, asyncio
 
-from pyrogram import utils as pyroutils
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
-import sys
+import sys 
 
 
 class Vars:
   API_ID = int(os.environ.get("API_ID", "0"))
-  API_HASH = os.environ.get("API_HASH", "dummy_hash")
+  API_HASH = os.environ.get("API_HASH", "")
   
-  BOT_TOKEN = os.environ.get("BOT_TOKEN", "dummy_token")
-  plugins = dict(
-    root="TG",
-    #include=["TG.users"]
-  )
+  BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+  plugins = dict(root="TG")
   
   LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "")
   UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
-  DB_URL = os.environ.get("DB_URL", "mongodb://localhost:27017/manhwa_bot")
+  DB_URL = os.environ.get("DB_URL", "")
   
   PORT = int(os.environ.get("PORT", "5000"))
   OWNER = int(os.environ.get("OWNER","1880221341"))
@@ -172,8 +167,8 @@ class Vars:
 
 
 
-pyroutils.MIN_CHAT_ID = -99999999999999
-pyroutils.MIN_CHANNEL_ID = -100999999999999
+
+remove_site_sf = ["cf"]
 
 def load_fsb_vars(self):
   channel = Vars.FORCE_SUB_CHANNEL
@@ -190,23 +185,22 @@ def load_fsb_vars(self):
     sys.exit()
 
 
-class Manhwa_Bot(pyrogram.Client, Vars):
+class Manhwa_Bot(pyrogram.Client):
   def __init__(self):
     super().__init__(
       "ManhwaBot",
-      api_id=self.API_ID,
-      api_hash=self.API_HASH,
-      bot_token=self.BOT_TOKEN,
-      plugins=self.plugins,
+      api_id=Vars.API_ID,
+      api_hash=Vars.API_HASH,
+      bot_token=Vars.BOT_TOKEN,
+      plugins=Vars.plugins,
       workers=50,
     )
-    self.logger = logger
     self.__version__ = pyrogram.__version__
     self.FSB = []
-
+    
   async def start(self):
     await super().start()
-
+    
     async def run_flask():
       cmds = ("gunicorn", "app:app")
       process = await asyncio.create_subprocess_exec(
@@ -218,11 +212,11 @@ class Manhwa_Bot(pyrogram.Client, Vars):
 
       if process.returncode != 0:
         logger.error(f"Flask app failed to start: {stderr.decode()}")
-
+      
       logger.info("Webs app started successfully")
-
+    
     usr_bot_me = await self.get_me()
-
+    
     if os.path.exists("restart_msg.txt"):
       with open("restart_msg.txt", "r") as f:
         chat_id, message_id = f.read().split(":")
@@ -232,14 +226,15 @@ class Manhwa_Bot(pyrogram.Client, Vars):
       except Exception as e: logger.exception(e)
 
       os.remove("restart_msg.txt")
-
+    
     if os.path.exists("Process"):
       shutil.rmtree("Process")
-
-    load_fsb_vars(self)
-
-    self.logger.info("""
-
+    
+    if Vars.FORCE_SUB_CHANNEL:
+      load_fsb_vars(self)
+    
+    logger.info("""
+    
     ██╗    ██╗██╗███████╗ █████╗ ██████╗ ██████╗     ██████╗  ██████╗ ████████╗███████╗
     ██║    ██║██║╚══███╔╝██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
     ██║ █╗ ██║██║  ███╔╝ ███████║██████╔╝██║  ██║    ██████╔╝██║   ██║   ██║   ███████╗
@@ -249,29 +244,33 @@ class Manhwa_Bot(pyrogram.Client, Vars):
 
     """)
     self.username = usr_bot_me.username
-    self.logger.info("Make By https://t.me/Wizard_Bots ")
-    self.logger.info(f"Manhwa Bot Started as {usr_bot_me.first_name} | @{usr_bot_me.username}")
-
-    if self.WEBS_HOST:
+    logger.info("Make By https://t.me/Wizard_Bots ")
+    logger.info(f"Manhwa Bot Started as {usr_bot_me.first_name} | @{usr_bot_me.username}")
+    
+    if Vars.WEBS_HOST:
       await run_flask()
+    
+    MSG = f"""<blockquote><b>🔥 SYSTEMS ONLINE. READY TO RUMBLE. 🔥
 
-    MSG = """<blockquote><b>🔥 SYSTEMS ONLINE. READY TO RUMBLE. 🔥
+DC Mode: {usr_bot_me.dc_id}
+
 Sleep mode deactivated. Neural cores at 100%. Feed me tasks, and watch magic happen. Let’s. Get. Dangerous.</b></blockquote>"""
-
+    
     PICS = random.choice(Vars.PICS)
-
+    
     button = [[
-      InlineKeyboardButton('*Start Now*', url= f"https://t.me/{usr_bot_me.username}?start=start"),
+      InlineKeyboardButton('*Start Now*', url= f"https://t.me/{self.username}?start=start"),
       InlineKeyboardButton("*Channel*", url = "telegram.me/Wizard_Bots")
     ]]
-
-    try: await self.send_photo(self.UPDATE_CHANNEL, photo=PICS, caption=MSG, reply_markup=InlineKeyboardMarkup(button))
+    
+    try: await self.send_photo(-1001723894782, photo=PICS, caption=MSG, reply_markup=InlineKeyboardMarkup(button))
     except: pass
 
-
+    
   async def stop(self):
     await super().stop()
-    self.logger.info("Manhwa Bot Stopped")
+    logger.info("Manhwa Bot Stopped")
 
 
 Bot = Manhwa_Bot()
+    
