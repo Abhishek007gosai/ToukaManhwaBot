@@ -11,7 +11,6 @@ import random
 from Tools.db import *
 from Tools.my_token import check_token_, verify_token
 
-from pyrogram.handlers import MessageHandler
 import time
 
 from asyncio import create_subprocess_exec
@@ -21,8 +20,9 @@ from sys import executable
 import shutil, psutil, time, os, platform
 import asyncio
 
-import pytz
-from datetime import datetime
+from io import BytesIO
+
+
 
 HELP_MSG = """
 <b>To download a manga just type the name of the manga you want to keep up to date.</b>
@@ -49,15 +49,13 @@ async def on_private_message(client, message):
     return message.continue_propagation()
 
   channel_button = split_list(channel_button)
-  channel_button.append(
-    [InlineKeyboardButton("🔃 Refresh 🔃", callback_data="refresh")]
-  )
+  channel_button.append([InlineKeyboardButton("𝗥𝗘𝗙𝗥𝗘𝗦𝗛 ⟳", callback_data="refresh")])
 
   await retry_on_flood(message.reply_photo)(
-    caption=Vars.FORCE_SUB_TEXT,
-    photo=random.choice(Vars.PICS),
-    reply_markup=InlineKeyboardMarkup(channel_button),
-    quote=True,
+      caption=Vars.FORCE_SUB_TEXT,
+      photo=random.choice(Vars.PICS),
+      reply_markup=InlineKeyboardMarkup(channel_button),
+      quote=True,
   )
   if change_data:
     for change_ in change_data:
@@ -85,13 +83,10 @@ async def get_info_(client, message):
       txt += f"<b>Compress: {uts[user_id]['setting'].get('compress', 'None')}</b>\n"
       await retry_on_flood(sts.edit)(txt)
     else:
-      uts[str(user_id)] = {}
-      uts[str(user_id)]['setting'] = {}
-      sync()
+      ensure_user(user_id)
       await retry_on_flood(sts.edit)("<code>User Not Found</code>")
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
-
 
 
 @Bot.on_message(filters.command("my_plan"))
@@ -105,53 +100,46 @@ async def my_plan(client, message):
 
   <b>- User ID: {message.from_user.id}</b>
   <b>- Username: {message.from_user.username}</b>
-  <b>- Days: {plan["Days"]}</b>
+  <b>- Days: {plan.get("Days", "")}</b>
   <b>- Expiration Days: {x}</b> 
-  
+
 <i>Thanks For Buying It......</i>""",
                         quote=True,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
-                            " Close ", callback_data="kclose")]])
-                       )
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("▏𝗖𝗟𝗢𝗦𝗘▕", callback_data="kclose")]]))
   else:
-    await message.reply(
-      "<i> You Have No Plan!! </i>",
-      reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(" Buy Now ", callback_data="premuim")]])
-                       )
+    await message.reply("<i> You Have No Plan!! </i>",
+                        reply_markup=InlineKeyboardMarkup([
+                          [InlineKeyboardButton(" Buy Now ", callback_data="premuim")]
+                        ]))
 
 
-@Bot.on_message(
-  filters.command(["clean_tasks", "clean_queue"]))
+@Bot.on_message(filters.command(["clean_tasks", "clean_queue"]))
 async def deltask(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
       return await message.reply("<code>You cannot use me baby </code>")
-    
+
   if queue.get_count(message.from_user.id):
     numb = await queue.delete_tasks(message.from_user.id)
     await message.reply(f"<i>All Your Tasks Deleted:- {numb} </i>")
   else:
     await message.reply("<i>There is no any your pending tasks.... </i>")
-  
+
 
 @Bot.on_message(filters.command("start"))
 async def start(client, message):
-
-  if str(message.from_user.id) not in uts:
-    uts[str(message.from_user.id)] = {}
-    sync()
-
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
       return await message.reply("<code>You cannot use me baby </code>")
 
+  ensure_user(message.from_user.id)
   if len(message.command) > 1:
     if message.command[1] != "start":
       user_id = message.from_user.id
       token = message.command[1]
       sts = await message.reply("<i>ㅤProcessing.....</i>")
       return await verify_token(sts, user_id, token)
-  
+
   photo = random.choice(Vars.PICS)
   ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
   await message.reply_photo(
@@ -168,70 +156,77 @@ async def start(client, message):
        "\n"
        "<b><i>Check /help for more information.</i></b>"),
       reply_markup=InlineKeyboardMarkup([
-        [
-          InlineKeyboardButton('✯ Repo ✯', url="https://github.com/Dra-Sama/Manhwa-Bot"),
-          InlineKeyboardButton("✯ Support ✯", url="https://t.me/WizardBotHelper")
-        ],
-        [
-          InlineKeyboardButton("♛ Setting ♛", callback_data="mus"),
-          InlineKeyboardButton("♞ Close ♞", callback_data="kclose")
-        ]
+          [  # SUPPORT (styled letters, each opens support link)
+              InlineKeyboardButton("s", url="https://t.me/WizardBotHelper"),
+              InlineKeyboardButton("ᴜ", url="https://t.me/WizardBotHelper"),
+              InlineKeyboardButton("ᴘ", url="https://t.me/WizardBotHelper"),
+              InlineKeyboardButton("ᴘ", url="https://t.me/WizardBotHelper"),
+              InlineKeyboardButton("ᴏ", url="https://t.me/WizardBotHelper"),
+              InlineKeyboardButton("ʀ", url="https://t.me/WizardBotHelper"),
+              InlineKeyboardButton("ᴛ", url="https://t.me/WizardBotHelper"),
+          ],
+          [  # SETTINGS + CLOSE (styled full words)
+              InlineKeyboardButton("⌜sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
+              InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="kclose")
+          ],
+          [  # REPO (styled letters, all linked to repo)
+              InlineKeyboardButton("ʀ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
+              InlineKeyboardButton("ᴇ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
+              InlineKeyboardButton("ᴘ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
+              InlineKeyboardButton("ᴏ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
+          ]
       ]))
 
-  
 
-@Bot.on_message(
-    filters.command(["add", "add_premium"]) & filters.user(Bot.ADMINS))
+
+@Bot.on_message(filters.command(["add", "add_premium"]) & filters.user(Vars.ADMINS))
 async def add_handler(_, msg):
   sts = await msg.reply_text("<code>Processing...</code>")
   try:
     user_id = int(msg.text.split(" ")[1])
     time_limit_days = int(msg.text.split(" ")[2])
     await add_premium(user_id, time_limit_days)
-    await retry_on_flood(sts.edit
-                         )("<code>User added to premium successfully.</code>")
+    await retry_on_flood(sts.edit)("<code>User added to premium successfully.</code>")
     try:
-      await retry_on_flood(_.send_message
-                         )(user_id, f"<i>You are now a premium user for {time_limit_days} days... Thanks For Buying It.....</i>")
+      await retry_on_flood(_.send_message)(
+        user_id,
+        f"<i>You are now a premium user for {time_limit_days} days... Thanks For Buying It.....</i>"
+      )
     except:
       pass
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
 
-@Bot.on_message(
-    filters.command(["del", "del_premium"]) & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command(["del", "del_premium"]) & filters.user(Vars.ADMINS))
 async def del_handler(_, msg):
   sts = await msg.reply_text("<code>Processing...</code>")
   try:
     user_id = int(msg.text.split(" ")[1])
     await remove_premium(user_id)
-    await retry_on_flood(
-        sts.edit)("<code>User removed from premium successfully.</code>")
+    await retry_on_flood(sts.edit)("<code>User removed from premium successfully.</code>")
     try:
-      await retry_on_flood(_.send_message
-                         )(user_id, "<i>Your Premuims Plans End.. Please Buy again or Contact To Owner....  .</i>")
+      await retry_on_flood(_.send_message)(
+        user_id,
+        "<i>Your Premuims Plans End.. Please Buy again or Contact To Owner....  .</i>"
+      )
     except:
       pass
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
 
-@Bot.on_message(
-    filters.command(["del_expired", "del_expired_premium"])
-    & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command(["del_expired", "del_expired_premium"]) & filters.user(Vars.ADMINS))
 async def del_expired_handler(_, msg):
   sts = await msg.reply_text("<code>Processing...</code>")
   try:
     await remove_expired_users()
-    await retry_on_flood(sts.edit
-                         )("<code>Expired users removed successfully.</code>")
+    await retry_on_flood(sts.edit)("<code>Expired users removed successfully.</code>")
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
 
-@Bot.on_message(
-    filters.command(["premium", "premium_users"]) & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command(["premium", "premium_users"]) & filters.user(Vars.ADMINS))
 async def premium_handler(_, msg):
   sts = await msg.reply_text("<code>Processing...</code>")
   try:
@@ -250,30 +245,39 @@ async def premium_handler(_, msg):
     await retry_on_flood(sts.edit)(err)
 
 
-@Bot.on_message(filters.command(["broadcast", "b"]) & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command(["broadcast", "b"]) & filters.user(Vars.ADMINS))
 async def b_handler(_, msg):
   return await borad_cast_(_, msg)
 
 
-@Bot.on_message(
-    filters.command(["pbroadcast", "pb"]) & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command(["pbroadcast", "pb"]) & filters.user(Vars.ADMINS))
 async def pb_handler(_, msg):
-  return await borad_cast_(_, msg, True)
+  return await borad_cast_(_, msg, pin=True)
 
+@Bot.on_message(filters.command(["forward", "fd"]) & filters.user(Vars.ADMINS))
+async def fb_handler(_, msg):
+  return await borad_cast_(_, msg, forward=True)
 
-async def borad_cast_(_, message, pin=None):
+@Bot.on_message(filters.command(["pforward", "pfd"]) & filters.user(Vars.ADMINS))
+async def pfb_handler(_, msg):
+  return await borad_cast_(_, msg, pin=True, forward=True)
+
+async def borad_cast_(_, message, pin=None, forward=None):
 
   def del_users(user_id):
     try:
       user_id = str(user_id)
       del uts[user_id]
-      sync(_.DB_NAME, 'uts')
+      sync()
     except:
       pass
 
   sts = await message.reply_text("<code>Processing...</code>")
   if message.reply_to_message:
     user_ids = get_users()
+    if not user_ids:
+      return await retry_on_flood(sts.edit)("<code>No users found.</code>")
+    
     msg = message.reply_to_message
     total = 0
     successful = 0
@@ -283,7 +287,7 @@ async def borad_cast_(_, message, pin=None):
     await retry_on_flood(sts.edit)("<code>Broadcasting...</code>")
     for user_id in user_ids:
       try:
-        docs = await msg.copy(int(user_id))
+        docs = await msg.forward(int(user_id)) if forward else await msg.copy(int(user_id))
         if pin:
           await docs.pin(both_sides=True)
 
@@ -321,12 +325,10 @@ async def borad_cast_(_, message, pin=None):
 
     await retry_on_flood(sts.edit)(status)
   else:
-    await retry_on_flood(sts.edit
-                         )("<code>Reply to a message to broadcast it.</code>")
+    await retry_on_flood(sts.edit)("<code>Reply to a message to broadcast it.</code>")
 
 
-
-@Bot.on_message(filters.command("restart") & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command("restart") & filters.user(Vars.ADMINS))
 async def restart_(client, message):
   msg = await message.reply_text("<code>Restarting.....</code>", quote=True)
   with open("restart_msg.txt", "w") as file:
@@ -337,67 +339,77 @@ async def restart_(client, message):
   execl(executable, executable, "-B", "main.py")
 
 
-def get_nepal_time():
-  try:
-      # Set timezone to Asia/Kathmandu
-      kathmandu_tz = pytz.timezone('Asia/Kathmandu')
-      nepaltime = datetime.now(kathmandu_tz)
-      return nepaltime.strftime("%Y-%m-%d %I:%M:%S %p %Z")
-  except:
-      return "N/A"
 
 def humanbytes(size):
-    if not size:
-        return ""
-    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
-    size = float(size)
-    i = 0
-    while size >= 1024.0 and i < len(units) - 1:
-        i += 1
-        size /= 1024.0
-    return "%.2f %s" % (size, units[i])
+  if not size:
+    return ""
+  units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
+  size = float(size)
+  i = 0
+  while size >= 1024.0 and i < len(units) - 1:
+    i += 1
+    size /= 1024.0
+  return "%.2f %s" % (size, units[i])
 
+
+def get_process_stats():
+  p = psutil.Process(os.getpid())
+  try:
+      cpu = p.cpu_percent(interval=0.5)
+  except Exception:
+      cpu = "N/A"
+  try:
+      mem_info = p.memory_info()
+      rss = humanbytes(mem_info.rss)
+      vms = humanbytes(mem_info.vms)
+  except Exception:
+      rss = vms = "N/A"
+  return (
+      f" ├ CPU: {cpu}%\n"
+      f" ├ RAM (RSS): {rss}\n"
+      f" └ RAM (VMS): {vms}"
+  )
 
 @Bot.on_message(filters.command('stats'))
 async def show_stats(client, message):
-    total_disk, used_disk, free_disk = shutil.disk_usage(".")
-    total_disk_h = humanbytes(total_disk)
-    used_disk_h = humanbytes(used_disk)
-    free_disk_h = humanbytes(free_disk)
-    disk_usage_percent = psutil.disk_usage('/').percent
+  total_disk, used_disk, free_disk = shutil.disk_usage(".")
+  total_disk_h = humanbytes(total_disk)
+  used_disk_h = humanbytes(used_disk)
+  free_disk_h = humanbytes(free_disk)
+  disk_usage_percent = psutil.disk_usage('/').percent
 
-    net_start = psutil.net_io_counters()
-    time.sleep(2)
-    net_end = psutil.net_io_counters()
+  net_start = psutil.net_io_counters()
+  time.sleep(2)
+  net_end = psutil.net_io_counters()
 
-    bytes_sent = net_end.bytes_sent - net_start.bytes_sent
-    bytes_recv = net_end.bytes_recv - net_start.bytes_recv
+  bytes_sent = net_end.bytes_sent - net_start.bytes_sent
+  bytes_recv = net_end.bytes_recv - net_start.bytes_recv
 
-    cpu_cores = os.cpu_count()
-    cpu_usage = psutil.cpu_percent()
+  cpu_cores = os.cpu_count()
+  cpu_usage = psutil.cpu_percent()
 
-    ram = psutil.virtual_memory()
-    ram_total = humanbytes(ram.total)
-    ram_used = humanbytes(ram.used)
-    ram_free = humanbytes(ram.available)
-    ram_usage_percent = ram.percent
+  ram = psutil.virtual_memory()
+  ram_total = humanbytes(ram.total)
+  ram_used = humanbytes(ram.used)
+  ram_free = humanbytes(ram.available)
+  ram_usage_percent = ram.percent
 
-    try:
-        uptime_seconds = time.time() - Vars.PING
-        uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(uptime_seconds))
-    except:
-        uptime = "N/A"
+  try:
+    uptime_seconds = time.time() - Vars.PING
+    uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(uptime_seconds))
+  except:
+    uptime = "N/A"
 
-    start_time = time.time()
-    status_msg = await message.reply('📊 **Accessing System Details...**')
-    end_time = time.time()
-    time_taken_ms = (end_time - start_time) * 1000
+  start_time = time.time()
+  status_msg = await message.reply('📊 **Accessing System Details...**')
+  end_time = time.time()
+  time_taken_ms = int((end_time - start_time) * 1000)
 
-    os_name = platform.system()
-    os_version = platform.release()
-    python_version = platform.python_version()
+  os_name = platform.system()
+  os_version = platform.release()
+  python_version = platform.python_version()
 
-    response_text = f"""
+  response_text = f"""
 🖥️ **System Statistics Dashboard**
 
 💾 **Disk Storage**
@@ -414,6 +426,9 @@ async def show_stats(client, message):
 ├ Cores:  `{cpu_cores}`
 └ Usage:  `{cpu_usage}%`
 
+🔌 **Bot Process**
+{get_process_stats()}
+
 🌐 **Network**
 ├ Upload Speed:  `{humanbytes(bytes_sent/2)}/s`
 ├ Download Speed:  `{humanbytes(bytes_recv/2)}/s`
@@ -423,27 +438,27 @@ async def show_stats(client, message):
 ├ OS:  `{os_name}`
 ├ OS Version:  `{os_version}`
 ├ Python:  `{python_version}`
-├ Time:  `{get_nepal_time()}`
 └ Uptime:  `{uptime}`
 
 ⏱️ **Performance**
 └ Current Ping:  `{time_taken_ms:.3f} ms`
 """
 
-    await message.reply_text(response_text, quote=True)
-    await status_msg.delete()
+  await retry_on_flood(message.reply_text)(response_text, quote=True)
+  await retry_on_flood(status_msg.delete)()
 
 
-@Bot.on_message(filters.command("shell") & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command("shell") & filters.user(Vars.ADMINS))
 async def shell(_, message):
   cmd = message.text.split(maxsplit=1)
   if len(cmd) == 1:
     return await message.reply("<code>No command to execute was given.</code>")
 
   cmd = cmd[1]
-  proc = await asyncio.create_subprocess_shell(cmd,
-                                               stdout=asyncio.subprocess.PIPE,
-                                               stderr=asyncio.subprocess.PIPE)
+  proc = await asyncio.create_subprocess_shell(
+    cmd, stdout=asyncio.subprocess.PIPE,
+    stderr=asyncio.subprocess.PIPE
+  )
   stdout, stderr = await proc.communicate()
   stdout = stdout.decode().strip()
   stderr = stderr.decode().strip()
@@ -454,18 +469,20 @@ async def shell(_, message):
     reply += f"<b>Stderr</b>\n<blockquote>{stderr}</blockquote>"
 
   if len(reply) > 3000:
-    file_name = "shell_output.txt"
-    with open(file_name) as out_file:
-      await message.reply_document(out_file)
-      out_file.close()
-    os.remove(file_name)
+    bio = BytesIO()
+    bio.write(str(reply).encode('utf-8'))
+    bio.seek(0)
+  
+    await message.reply_document(bio, file_name="shell_output.txt")
+    bio.close()
+    
   elif len(reply) != 0:
     await message.reply(reply)
   else:
     await message.reply("No Reply")
 
 
-@Bot.on_message(filters.command("export") & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command("export") & filters.user(Vars.ADMINS))
 async def export_(_, message):
   cmd = message.text.split(maxsplit=1)
   if len(cmd) == 1:
@@ -486,7 +503,7 @@ async def export_(_, message):
     await sts.edit(err)
 
 
-@Bot.on_message(filters.command("import") & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command("import") & filters.user(Vars.ADMINS))
 async def import_(_, message):
   cmd = message.text.split(maxsplit=1)
   if len(cmd) == 1:
@@ -507,7 +524,7 @@ async def import_(_, message):
     await sts.edit(err)
 
 
-@Bot.on_message(filters.command(["clean", "c"]) & filters.user(Bot.ADMINS))
+@Bot.on_message(filters.command(["clean", "c"]) & filters.user(Vars.ADMINS))
 async def clean(_, message):
   directory = '/app'
   ex = (".mkv", ".mp4", ".zip", ".pdf", ".png", ".epub", ".temp")
@@ -600,175 +617,6 @@ def remove_dir(path):
     return err
 
 
-@Bot.on_message(filters.command("queue"))
-async def queue_msg_handler(client, message):
-  if Vars.IS_PRIVATE:
-    if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
-  
-  _datas_ = list(queue.ongoing_tasks.values())
-  reply_txt = f"<blockquote><b>📌 Queue Status (Total: {str(queue.qsize())} chapters)</b></blockquote>\n\n"
-  reply_txt += f"<b>👤 Your queue:</b>"
-  
-  _processing = []
-  _user_count = queue.get_count(message.from_user.id)
-  if _user_count and int(_user_count) != 0:
-    reply_txt+= f"""<blockquote expandable>=> <i>Total Chapters: {_user_count}</i>\n"""
-    if _datas_:
-      value = next((data['data'] for data in _datas_ if data['user_id'] == message.from_user.id), None)
-      value = value[0] if value else None
-      if value:
-        reply_txt += f"=> <i>{value['manga_title']} - {value['title']}</i></blockquote>\n"
-      else:
-        reply_txt += "</blockquote>\n"
-  else:
-    reply_txt += "\n=> <i>No chapters in your queue.</i>\n"
-  
-  reply_txt += "\n**🚦 Now Processing:**\n"
-  if _datas_:
-    reply_txt += "<blockquote expandable>"
-    for i, data in enumerate(_datas_, 1):
-      user_query = data['data'][2]
-      reply_txt += f"{i}. {user_query.from_user.mention()}\n"
-      _processing.append(user_query.from_user.id)
-      if i == 3:
-        break
-    reply_txt += "</blockquote>\n"
-  else:
-    reply_txt += "=> <i>No chapters in global queue.</i>\n"
-
-  sample_txt = ""
-  sample_txt += "\n**⏳ Waiting Line:**\n"
-  if queue.qsize() > 0:
-    reply_txt += "<blockquote expandable>"
-    for i, data in enumerate(queue.storage_data.values(), 1):
-      user_query = data['data'][2]
-      if user_query.from_user.id not in _processing:
-        sample_txt += f"{i}. {user_query.from_user.mention()}\n"
-        if i == 2:
-          break
-    sample_txt += "=> <i>Other chapters are in the waiting line.</i>"
-    sample_txt += "</blockquote>\n"
-  else:
-    sample_txt += "=> <i>No chapters in waiting line.</i>\n"
-
-  if int(len(reply_txt) + len(sample_txt)) < 4096:
-    reply_txt += sample_txt
-  
-  await retry_on_flood(message.reply_text)(
-    reply_txt,
-    quote=True,
-    reply_markup=InlineKeyboardMarkup([
-      [
-        InlineKeyboardButton("🗑 Clean Queue 🗑", callback_data="clean_queue"),
-        InlineKeyboardButton("🪦 Subscription 🪦", callback_data="isubs")
-      ],
-      [
-        InlineKeyboardButton("⚔️ Close ⚔️", callback_data="kclose"),
-        InlineKeyboardButton("🔄 Refresh 🔄", callback_data="refresh_queue")
-      ],
-      [
-        InlineKeyboardButton(" ♕ Owner ♕", user_id=Vars.OWNER)
-      ]
-    ])
-  )
-
-
-@Bot.on_message(filters.command(["us", "user_setting", "user_panel"]))
-async def userxsettings(client, message):
-  if Vars.IS_PRIVATE:
-    if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
-
-  sts = await message.reply("<code>Processing...</code>")
-  try:
-    user_id = str(message.from_user.id)
-    if not user_id in uts:
-      uts[user_id] = {}
-      sync()
-
-    if not "setting" in uts[user_id]:
-      uts[user_id]['setting'] = {}
-      sync()
-
-    thumbnali = uts[user_id]['setting'].get("thumb", None)
-    if thumbnali:
-      thumb = "True" if not thumbnali.startswith("http") else thumbnali
-    else:
-      thumb = thumbnali
-
-    banner1 = uts[user_id]['setting'].get("banner1", None)
-    banner2 = uts[user_id]['setting'].get("banner2", None)
-    if banner1:
-      banner1 = "True" if not banner1.startswith("http") else banner1
-
-    if banner2:
-      banner2 = "True" if not banner2.startswith("http") else banner2
-
-    txt = users_txt.format(
-        id=user_id,
-        file_name=uts[user_id]['setting'].get("file_name", "None"),
-        caption=uts[user_id]['setting'].get("caption", "None"),
-        thumb=thumb,
-        banner1=banner1,
-        banner2=banner2,
-        dump=uts[user_id]['setting'].get("dump", "None"),
-        type=uts[user_id]['setting'].get("type", "None"),
-        megre=uts[user_id]['setting'].get("megre", "None"),
-        regex=uts[user_id]['setting'].get("regex", "None"),
-        len=uts[user_id]['setting'].get("file_name_len", "None"),
-        password=uts[user_id]['setting'].get("password", "None"),
-        compress=uts[user_id]['setting'].get("compress", "None"),
-    )
-
-    button = [
-        [
-            InlineKeyboardButton("🪦 File Name 🪦", callback_data="ufn"),
-            InlineKeyboardButton("🪦 Caption‌ 🪦", callback_data="ucp")
-        ],
-        [
-            InlineKeyboardButton("🪦 Thumbnali 🪦", callback_data="uth"),
-            InlineKeyboardButton("🪦 Regex 🪦", callback_data="uregex")
-        ],
-        [
-            InlineKeyboardButton("⚒ Banner ⚒", callback_data="ubn"),
-            InlineKeyboardButton("⚒ Compress ⚒", callback_data="u_compress"),
-        ],
-        [
-            InlineKeyboardButton("⚙️ Password ⚙️", callback_data="upass"),
-            InlineKeyboardButton("⚙️ Megre Size ⚙️", callback_data="umegre")
-        ],
-        [
-            InlineKeyboardButton("⚒ File Type ⚒", callback_data="u_file_type"),
-        ],
-    ]
-    if not Vars.CONSTANT_DUMP_CHANNEL:
-      button[-1].append(
-          InlineKeyboardButton("⚒ Dump Channel ⚒", callback_data="udc"))
-
-    button.append([InlineKeyboardButton("❄️ Close ❄️", callback_data="close")])
-    if not thumbnali:
-      thumbnali = random.choice(Vars.PICS)
-    try:
-      await message.reply_photo(thumbnali,
-                                caption=txt,
-                                reply_markup=InlineKeyboardMarkup(button))
-    except FloodWait as err:
-      await asyncio.sleep(err.value)
-      await message.reply_photo(thumbnali,
-                                caption=txt,
-                                reply_markup=InlineKeyboardMarkup(button))
-    except:
-      await message.reply_photo(photo=random.choice(Vars.PICS),
-                                caption=txt,
-                                reply_markup=InlineKeyboardMarkup(button))
-
-    await sts.delete()
-  except Exception as err:
-    logger.exception(err)
-    await sts.edit(err)
-
-
 @Bot.on_message(filters.command("help"))
 async def help(client, message):
   if Vars.IS_PRIVATE:
@@ -779,126 +627,3 @@ async def help(client, message):
 
 
 
-@Bot.on_message(filters.command(["subs", "subscribes"]))
-async def isubs_cmds(_, query):
-  """This Is Subscribe Handler Of Message Data"""
-  sts = await query.reply("<i>ㅤProcessing.....</i>")
-
-  user_id = str(query.from_user.id)
-  if user_id not in uts:
-    uts[user_id] = {}
-    sync()
-
-    return await retry_on_flood(sts.edit)("<i>ㅤYou Have No Subs .... </i>")
-
-  manga_subs = get_subs(user_id)
-  if not manga_subs:
-    return await retry_on_flood(sts.edit)("<i>ㅤYou Have No Subs .... </i>")
-
-  if manga_subs is True:
-    return await retry_on_flood(sts.edit)("<i>ㅤYou Have No Subs .... </i>")
-
-  button = []
-
-  manga_subs = manga_subs[:60]
-  try:
-    for data in manga_subs:
-      web = check_get_web(data['url'])
-      if not web:
-        continue
-
-      data['slug'] = data['url'].split("/")[-1]
-      if data['slug'] == "":
-        data['slug'] = data['url'].split("/")[-2]
-
-      c = f"chs|{web.sf}{hash(data['url'])}"
-      searchs[c] = (web, data)
-      button.append([InlineKeyboardButton(data['title'], callback_data=c)])
-
-    if len(manga_subs) > 60:
-        button.append([InlineKeyboardButton(f">>", callback_data=f"isubs:2")])
-
-    button.append([InlineKeyboardButton("🔥 Close 🔥", callback_data="kclose")])
-
-    await retry_on_flood(query.reply_photo)(
-         photo=random.choice(Vars.PICS),
-         quote=True,
-         caption="<i>Your Subs ..</i>",
-         invert_media=True,
-         reply_markup=InlineKeyboardMarkup(button),
-    )
-    await retry_on_flood(sts.delete)()
-    
-  except Exception as err:
-    await retry_on_flood(sts.edit)(err)
-    
-
-
-@Bot.on_message(filters.command("search"))
-@check_token_
-async def search_group(client, message):
-  if Vars.IS_PRIVATE:
-    if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
-
-  if client.SHORTENER:
-    if not await premium_user(message.from_user.id):
-      if not verify_token(message.from_user.id):
-        if not message.from_user.id in client.ADMINS:
-          return await get_token(message, message.from_user.id)
-
-  if str(message.from_user.id) not in uts:
-    uts[str(message.from_user.id)] = {}
-    sync()
-
-  if "subs" not in uts[str(message.from_user.id)]:
-    uts[str(message.from_user.id)]['subs'] = {}
-    sync()
-
-  try:
-    txt = message.text.split(" ")[1]
-  except:
-    return await message.reply("<code>Format:- /search Manga </code>")
-  photo = random.choice(Vars.PICS)
-
-  try:
-    await message.reply_photo(photo,
-                              caption="<i>Select search Webs ...</i>",
-                              reply_markup=plugins_list(),
-                              quote=True)
-  except ValueError:
-    await message.reply_photo(photo,
-                              caption="<i>Select search Webs ...</i>",
-                              reply_markup=plugins_list(),
-                              quote=True)
-
-
-@Bot.on_message(filters.text & filters.private)
-@check_token_
-async def search(client, message):
-  if Vars.IS_PRIVATE:
-    if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
-
-  if str(message.from_user.id) not in uts:
-    uts[str(message.from_user.id)] = {}
-    sync()
-
-  if "subs" not in uts[str(message.from_user.id)]:
-    uts[str(message.from_user.id)]['subs'] = {}
-    sync()
-
-  txt = message.text
-  photo = random.choice(Vars.PICS)
-  button = []
-  if not txt.startswith("/"):
-    try:
-      await message.reply_photo(photo,
-                                caption="<i>Select search Webs ...</i>",
-                                reply_markup=plugins_list(),
-                                quote=True)
-    except ValueError:
-      await message.reply_photo(photo,
-                                caption="<i>Select search Webs ...</i>",
-                                reply_markup=plugins_list(),
-                                quote=True)
