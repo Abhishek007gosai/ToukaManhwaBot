@@ -3,7 +3,7 @@ from os import path as ospath
 from subprocess import run as srun
 
 UPSTREAM_REPO = ""  # SSH URL for private repo
-UPSTREAM_BRANCH = "main"
+UPSTREAM_BRANCH = "master"
 GITHUB_EMAIL = ""
 GITHUB_USERNAME = ""
 
