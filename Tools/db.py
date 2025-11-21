@@ -174,7 +174,7 @@ def get_subs(user_id, manga_url=None, web=None):
             else:
                 subsList.extend(user_info['subs'][web])
         else:
-            for j in user_info["subs"].values():
+            for j in user_info["subs"]:
                 if manga_url:
                     return True if any(url['url'] == manga_url for url in j) else None
                 else:
