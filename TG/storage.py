@@ -97,8 +97,8 @@ def plugins_list(type=None, page=1):
         InlineKeyboardButton(" >> ", callback_data="bk.p:2") if page == 1 else InlineKeyboardButton(" << ", callback_data="bk.p:1")
     ])
     button.append([
-        InlineKeyboardButton("♞ All Search ♞", callback_data="plugin_all"),
-        InlineKeyboardButton("🔥 Close 🔥", callback_data="kclose")
+        InlineKeyboardButton("All Search", callback_data="plugin_all"),
+        InlineKeyboardButton("Close", callback_data="kclose")
     ])
     return InlineKeyboardMarkup(button)
 
