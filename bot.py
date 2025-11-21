@@ -16,7 +16,7 @@ class Vars:
   BOT_TOKEN = os.environ.get("BOT_TOKEN", "7689010904:AAFYk32nNTrmA1ZwPUbkky_gAGXeU5aS8iE")
   plugins = dict(root="TG")
   
-  LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-1002456565415")
+  LOG_CHANNEL = -1002456565415
   UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "-1001987570479")
   DB_URL = os.environ.get("DB_URL", "mongodb+srv://Kafka:Au3OoWzCDYJKeuHU@cluster0.lz2m8iy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
   
