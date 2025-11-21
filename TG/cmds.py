@@ -154,17 +154,17 @@ async def start(client, message):
        "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>\n"
        "<b><blockquote>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</blockquote></b>"),
       reply_markup = InlineKeyboardMarkup([
-    [
-        InlineKeyboardButton("⌜ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
-    ],
-    [
-        InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/EternalsHelplineBot"),
-        InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ", url="https://t.me/MangaNexus"),
-    ],
-    [
-        InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="close"),
-    ]
-])
+          [
+              InlineKeyboardButton("⌜ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
+          ],
+          [
+              InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/EternalsHelplineBot"),
+              InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ", url="https://t.me/MangaNexus"),
+          ],
+          [
+              InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="close"),
+          ]
+    ])
 
 
 
