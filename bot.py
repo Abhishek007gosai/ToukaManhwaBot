@@ -16,7 +16,7 @@ class Vars:
   BOT_TOKEN = "7686806902:AAHum49Z7wZEfDpvbd2KdEpk3-D_y7K9e2s"
   plugins = dict(root="TG")
   
-  LOG_CHANNEL = -1002456565415
+  LOG_CHANNEL = -1003089960436
   UPDATE_CHANNEL = -1001987570479
   DB_URL = "mongodb+srv://hanxsooyoung:qGsVMuuKjE12Gewz@cluster0.oooqdg5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   
