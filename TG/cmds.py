@@ -153,6 +153,7 @@ async def start(client, message):
        f"<b><i>Ping:- {ping}</i></b>\n"
        "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>\n"
        "<b><blockquote>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</blockquote></b>"),
+  
       reply_markup = InlineKeyboardMarkup([
           [
               InlineKeyboardButton("⌜ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
