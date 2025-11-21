@@ -33,8 +33,8 @@ class Vars:
   DB_NAME = "cluster0"
   PING = time()
   
-  SHORTENER = os.environ.get("SHORTENER", None)
-  SHORTENER_API = os.environ.get("SHORTENER_API", "") # put {} for url, ex: shornter.api?url={}
+  SHORTENER = os.environ.get("SHORTENER", True)
+  SHORTENER_API = os.environ.get("SHORTENER_API", "64d631b036df348caab852591a09288cbf5b6809?url={shortxlinks.com}") # put {} for url, ex: shornter.api?url={}
   DURATION = int(os.environ.get("DURATION", "20")) # hrs
   
   FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><i>❗️ You must join our channel before using this feature:</i></b>""")
