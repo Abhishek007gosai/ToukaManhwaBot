@@ -165,7 +165,7 @@ async def start(client, message):
             InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ", url="https://t.me/MangaNexus"),
         ],
         [
-            InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="Close"),
+            InlineKeyboardButton("ᴍᴏʀᴇ ᴄʜᴀɴɴᴇʟs", url="https://t.me/AnimeNexusNetwork/156"),
         ]
     ])
 )
