@@ -130,11 +130,11 @@ async def verify_token(message, user_id, token):
                     return await message.edit("<i> Token verified. Now, You Can Use Me</i>")
                 else: 
                     keyboard = InlineKeyboardMarkup([
-                        [InlineKeyboardButton("🖥 Get Token 🖥", url=token_data['s_link'])],
-                        [InlineKeyboardButton("📺 Watch Tutorial 📺", url="https://t.me/+KymUiadSyutiZjM1")],
+                        [InlineKeyboardButton("»ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғʏ", url=token_data['s_link'])],
+                        [InlineKeyboardButton("»ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ/ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ«", url="https://t.me/+wekKcN1tjbAxY2U1")],
                         [
-                            InlineKeyboardButton("💸 Bot Premuim 💸", callback_data="premuim"),
-                            InlineKeyboardButton("⛓️‍💥 Close ⛓️‍💥", callback_data="close")
+                            InlineKeyboardButton("ʙᴏᴛ ᴘʀᴇᴍɪᴜᴍ", callback_data="premuim"),
+                            InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")
                         ],
                     ])
                     
@@ -168,13 +168,13 @@ async def get_token(message, user_id):
     short_token_link = get_short(token_link)
     save_token(user_id, new_token, message.id, message.chat.id, short_token_link)
     
-    button = InlineKeyboardButton("🖥 Get Token 🖥", url=short_token_link)
-    button2 = InlineKeyboardButton("📺 Watch Tutorial 📺", url="https://t.me/+KymUiadSyutiZjM1")
+    button = InlineKeyboardButton("»ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғʏ«", url=short_token_link)
+    button2 = InlineKeyboardButton("»ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ/ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ«", url="https://t.me/+wekKcN1tjbAxY2U1")
     keyboard = InlineKeyboardMarkup([
         [button],
         [button2],
-        [InlineKeyboardButton("💸 Bot Premuim 💸", callback_data="premuim")],
-        [InlineKeyboardButton("⛓️‍💥 Close ⛓️‍💥", callback_data="close")],
+        [InlineKeyboardButton("ʙᴏᴛ ᴘʀᴇᴍɪᴜᴍ", callback_data="premuim")],
+        [InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")],
     ])
     
     try:
