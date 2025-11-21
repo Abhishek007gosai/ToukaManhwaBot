@@ -130,7 +130,7 @@ async def deltask(client, message):
 async def start(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<code>You cannot use me only my owner can</code>")
 
   ensure_user(message.from_user.id)
   if len(message.command) > 1:
@@ -145,7 +145,7 @@ async def start(client, message):
   await message.reply_photo(
       photo,
       caption=
-      ("<b><blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote></b>\n"
+       "<b><blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote></b>\n"
        "<b>ʜᴏᴡ ᴛᴏ ᴜsᴇ? ɪᴜsᴛ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ sᴏᴍᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</b>\n"
        "<b>ғᴏʀ ᴇxᴀᴍᴘʟᴇ:</b>\n"
        "<i><code>One Piece</i></code>\n"
