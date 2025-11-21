@@ -73,20 +73,21 @@ async def premuim_handler(_, query):
   """This Is Premuim Handler Of Callback Data"""
   button = query.message.reply_markup.inline_keyboard
   text = """
-<b><i>Premium Price
-
-Pricing Rates
-  7 Days - 30 inr / 0.35 USD / NRS 40
-  1 Month - 90 inr / 1.05 USD / NRS 140
-  3 Months - 260 inr / 2.94 USD / NRS 350
-  6 Months - 500 inr / 6.33 USD / NRS 700
-  9 Months - 780 inr / 9.14 USD / NRS 1100
-  12 Months - 1000 inr / 11.8 USD / NRS 1400
-
-Want To Buy ?!
-  Contact or DM - @Shanks_Kun
-
-We Have Limited Seats For Premium Users</i></b>"""
+<b><blockquote>sʜᴀʀᴇ ʙᴏᴛ ʟɪɴᴋ ᴛᴏ ʏᴏᴜʀ ғʀɪᴇɴᴅs ᴀɴᴅ ɢᴇᴛ ᴘʀᴇᴍɪᴜᴍ ᴀᴄᴄᴏʀᴅɪɴɢ ᴛᴏ ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs</blockquote>
+- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs -
+- 05 sʜᴀʀᴇ - 1 ᴡᴇᴇᴋ
+- 10 sʜᴀʀᴇ - 1 ᴍᴏɴᴛʜs
+- 20 sʜᴀʀᴇ - 3 ᴍᴏɴᴛʜs
+- 30 sʜᴀʀᴇ - 6 ᴍᴏɴᴛʜs
+- 40 sʜᴀʀᴇ - 1 year
+<blockquote>ᴘʀᴇᴍɪᴜᴍ ғᴇᴀᴛᴜʀᴇs
+○ ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪғʏ
+○ ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ
+○ ᴅɪʀᴇᴄᴛ ғɪʟᴇs
+○ ᴀᴅ-ғʀᴇᴇ ᴇxᴘᴇʀɪᴇɴᴄᴇ
+○ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀʟʟ</blockquote>
+<blockquote>‼️ᴀғᴛᴇʀ sʜᴀʀɪɴɢ ᴀ ʀᴇғᴇʀᴇɴᴄᴇ ʟɪɴᴋ ᴘʟᴇᴀsᴇ ɢɪᴠᴇ ᴜs sᴏᴍᴇ ᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴛʜᴇ ᴘʀᴇᴍɪᴜᴍ</blockquote>
+✨ɪғ ʏᴏᴜ ᴡᴀɴᴛ ʏᴏᴜ ᴄᴀɴ ᴅᴏɴᴀᴛᴇ ᴀɴʏ ᴀᴍᴏᴜɴᴛ @EternalsHelplineBot</b>"""
   try:
     del button[-2]
     await retry_on_flood(query.edit_message_media)(
