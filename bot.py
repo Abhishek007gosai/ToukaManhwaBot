@@ -37,7 +37,7 @@ class Vars:
   SHORTENER_API = os.environ.get("SHORTENER_API", "64d631b036df348caab852591a09288cbf5b6809?url={https://shortxlinks.com}") # put {} for url, ex: shornter.api?url={}
   DURATION = int(os.environ.get("DURATION", "20")) # hrs
   
-  FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><i>❗️ You must join our channel before using this feature:</i></b>""")
+  FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><blockquote>Hᴇʟʟᴏ!! ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <a href=https://t.me/MangaNexus>ᴍᴀɴɢᴀ ɴᴇxᴜs</blockquote> </a> Yᴏᴜ ɴᴇᴇᴅ ᴛᴏ Jᴏɪɴ ɪɴ ᴍʏ Cʜᴀɴɴᴇʟ/Gʀᴏᴜᴘ ғɪʀsᴛ, Pʟᴇᴀsᴇ sᴜʙsᴄʀɪʙᴇ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴛʜʀᴏᴜɢʜ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴀɴᴅ sᴛᴀʀᴛ ʙᴏᴛ ᴀɢᴀɪɴ</b>""")
   
   # Force Sub Channel Format : Button Text: Username(Without @) or Chat ID
   FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "𝕵𝖔𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: MangaNexus, 𝕵𝖔𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: AnimeNexusNetwork")#𝕵𝖔𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: Guimi_Zhi_Zhu_Anime, 𝕸𝖆𝖎𝖓 𝕮𝖍𝖆𝖓𝖓𝖊𝖑: Wizard_Bots")
@@ -146,8 +146,8 @@ Sleep mode deactivated. Neural cores at 100%. Feed me tasks, and watch magic hap
     PICS = random.choice(Vars.PICS)
     
     button = [[
-      InlineKeyboardButton('*Start Now*', url= f"https://t.me/{self.username}?start=start"),
-      InlineKeyboardButton("*Channel*", url = "telegram.me/Wizard_Bots")
+      InlineKeyboardButton('*sᴛᴀʀᴛ ɴᴏᴡ*', url= f"https://t.me/{self.username}?start=start"),
+      InlineKeyboardButton("*ᴄʜᴀɴɴᴇʟ*", url = "t.me/KafkaX_Bot?start=LTEwMDE5ODc1NzA0Nzk=")
     ]]
     
     try: await self.send_photo(-1001723894782, photo=PICS, caption=MSG, reply_markup=InlineKeyboardMarkup(button))
