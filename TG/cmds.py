@@ -153,19 +153,19 @@ async def start(client, message):
        f"<b><i>Ping:- {ping}</i></b>\n"
        "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>\n"
        "<b><blockquote>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</blockquote></b>"),
-  
-      reply_markup = InlineKeyboardMarkup([
-          [
+      reply_markup=InlineKeyboardMarkup([
+          [  # SUPPORT (styled letters, each opens support link)
               InlineKeyboardButton("⌜ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
           ],
-          [
+          [  # SETTINGS + CLOSE (styled full words)
               InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/EternalsHelplineBot"),
               InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ", url="https://t.me/MangaNexus"),
           ],
-          [
+          [  # REPO (styled letters, all linked to repo)
               InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="close"),
           ]
-    ])
+      ]))
+
 
 
 
