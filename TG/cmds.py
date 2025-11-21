@@ -32,8 +32,8 @@ For example:
 
 <blockquote expandable><i>Then you will have to choose the language of the manga. Depending on this language, you will be able to choose the website where you could download the manga. Here you will have the option to subscribe, or to choose a chapter to download. The chapters are sorted according to the website.</i></blockquote>
 
-<blockquote><b>Updates Channel : @Wizard_bots</b></blockquote>
-"""
+<blockquote><b>Updates Channel : @MangaNexus</b></blockquote>
+sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot"""
 
 @Bot.on_message(filters.private)
 async def on_private_message(client, message):
@@ -145,37 +145,26 @@ async def start(client, message):
   await message.reply_photo(
       photo,
       caption=
-      ("<b><i>Welcome to the best manga pdf bot in telegram!!</i></b>\n"
-       "\n"
-       "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n"
-       "\n"
-       "<b><i>For example:</i></b>\n"
+      ("<b><blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote></b>\n"
+       "<b>ʜᴏᴡ ᴛᴏ ᴜsᴇ? ɪᴜsᴛ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ sᴏᴍᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</b>\n"
+       "<b>ғᴏʀ ᴇxᴀᴍᴘʟᴇ:</b>\n"
        "<i><code>One Piece</i></code>\n"
        "\n"
        f"<b><i>Ping:- {ping}</i></b>"
-       "\n"
-       "<b><i>Check /help for more information.</i></b>"),
-      reply_markup=InlineKeyboardMarkup([
-          [  # SUPPORT (styled letters, each opens support link)
-              InlineKeyboardButton("s", url="https://t.me/WizardBotHelper"),
-              InlineKeyboardButton("ᴜ", url="https://t.me/WizardBotHelper"),
-              InlineKeyboardButton("ᴘ", url="https://t.me/WizardBotHelper"),
-              InlineKeyboardButton("ᴘ", url="https://t.me/WizardBotHelper"),
-              InlineKeyboardButton("ᴏ", url="https://t.me/WizardBotHelper"),
-              InlineKeyboardButton("ʀ", url="https://t.me/WizardBotHelper"),
-              InlineKeyboardButton("ᴛ", url="https://t.me/WizardBotHelper"),
-          ],
-          [  # SETTINGS + CLOSE (styled full words)
-              InlineKeyboardButton("⌜sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
-              InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="kclose")
-          ],
-          [  # REPO (styled letters, all linked to repo)
-              InlineKeyboardButton("ʀ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
-              InlineKeyboardButton("ᴇ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
-              InlineKeyboardButton("ᴘ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
-              InlineKeyboardButton("ᴏ", url="https://github.com/Dra-Sama/Manhwa-Bot"),
-          ]
-      ]))
+       "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>
+       "<b><blockquote>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</blockquote></b>"),
+      reply_markup = InlineKeyboardMarkup([
+    [
+        InlineKeyboardButton("⌜ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
+    ],
+    [
+        InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/EternalsHelplineBot"),
+        InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ", url="https://t.me/MangaNexus"),
+    ],
+    [
+        InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="close"),
+    ]
+])
 
 
 
@@ -208,7 +197,7 @@ async def del_handler(_, msg):
     try:
       await retry_on_flood(_.send_message)(
         user_id,
-        "<i>Your Premuims Plans End.. Please Buy again or Contact To Owner....  .</i>"
+        "<i>Your Premuims Plans End.. Please Buy again or Contact To Owner @EternalsHelplineBot</i>"
       )
     except:
       pass
@@ -621,7 +610,7 @@ def remove_dir(path):
 async def help(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<code>You cannot use me @EternalsHelplineBot</code>")
 
   return await message.reply(HELP_MSG)
 
