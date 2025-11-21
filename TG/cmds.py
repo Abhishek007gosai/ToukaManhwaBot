@@ -150,8 +150,8 @@ async def start(client, message):
        "<b>ғᴏʀ ᴇxᴀᴍᴘʟᴇ:</b>\n"
        "<i><code>One Piece</i></code>\n"
        "\n"
-       f"<b><i>Ping:- {ping}</i></b>"
-       "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>
+       f"<b><i>Ping:- {ping}</i></b>\n"
+       "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>\n"
        "<b><blockquote>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</blockquote></b>"),
       reply_markup = InlineKeyboardMarkup([
     [
