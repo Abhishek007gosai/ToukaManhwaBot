@@ -33,9 +33,9 @@ class Vars:
   DB_NAME = "cluster0"
   PING = time()
   
-  SHORTENER = os.environ.get("SHORTENER", True)
-  SHORTENER_API = os.environ.get("SHORTENER_API", "64d631b036df348caab852591a09288cbf5b6809?url={https://shortxlinks.com}") # put {} for url, ex: shornter.api?url={}
-  DURATION = int(os.environ.get("DURATION", "20")) # hrs
+  SHORTENER = True
+  SHORTENER_API = '64d631b036df348caab852591a09288cbf5b6809?url={https://shortxlinks.com}' # put {} for url, ex: shornter.api?url={}
+  DURATION = 20 # hrs
   
   FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><blockquote>Hᴇʟʟᴏ!! ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <a href=https://t.me/MangaNexus>ᴍᴀɴɢᴀ ɴᴇxᴜs</blockquote> </a> Yᴏᴜ ɴᴇᴇᴅ ᴛᴏ Jᴏɪɴ ɪɴ ᴍʏ Cʜᴀɴɴᴇʟ/Gʀᴏᴜᴘ ғɪʀsᴛ, Pʟᴇᴀsᴇ sᴜʙsᴄʀɪʙᴇ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴛʜʀᴏᴜɢʜ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴀɴᴅ sᴛᴀʀᴛ ʙᴏᴛ ᴀɢᴀɪɴ</b>""")
   
