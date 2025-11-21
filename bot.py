@@ -34,7 +34,7 @@ class Vars:
   PING = time()
   
   SHORTENER = os.environ.get("SHORTENER", True)
-  SHORTENER_API = os.environ.get("SHORTENER_API", "64d631b036df348caab852591a09288cbf5b6809?url={shortxlinks.com}") # put {} for url, ex: shornter.api?url={}
+  SHORTENER_API = os.environ.get("SHORTENER_API", "64d631b036df348caab852591a09288cbf5b6809?url={https://shortxlinks.com}") # put {} for url, ex: shornter.api?url={}
   DURATION = int(os.environ.get("DURATION", "20")) # hrs
   
   FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><i>❗️ You must join our channel before using this feature:</i></b>""")
