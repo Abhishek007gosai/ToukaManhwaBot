@@ -21,8 +21,8 @@ class Vars:
   DB_URL = "mongodb+srv://Kafka:Au3OoWzCDYJKeuHU@cluster0.lz2m8iy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   
   PORT = 5000
-  OWNER = 7654385403
-  ADMINS = 7654385403
+  OWNER = int(os.environ.get("OWNER","7654385403"))
+  ADMINS = os.environ.get("ADMINS", "7654385403")
   ADMINS = [int(admin) for admin in (ADMINS).split(" ")]
   ADMINS.append(OWNER)
   
