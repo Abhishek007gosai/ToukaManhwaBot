@@ -21,7 +21,7 @@ import asyncio
 async def search_group(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<code>You cannot use me only my owner can @EternalsHelplineBot</code>")
 
   if client.SHORTENER:
     if not await premium_user(message.from_user.id):
@@ -49,7 +49,7 @@ async def search_group(client, message):
 async def search(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<code>You cannot use me only my owner can @EternalsHelplineBot</code>")
   
   ensure_user(message.from_user.id)
   photo = random.choice(Vars.PICS)
