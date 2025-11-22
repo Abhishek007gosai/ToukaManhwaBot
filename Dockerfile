@@ -1,24 +1,30 @@
-FROM python:3.12
+FROM python:3.10-slim
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    gcc \
+    libffi-dev \
+    build-essential \
+    curl \
+    unzip \
+    && apt-get clean
+
+# Install Deno (yt-dlp support)
+RUN curl -fsSL https://deno.land/install.sh | sh
+ENV DENO_INSTALL="/root/.deno"
+ENV PATH="$DENO_INSTALL/bin:$PATH"
+
+# Workdir
 WORKDIR /app
 
-RUN apt update && apt install -y \
-    libavif-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libtiff-dev \
-    libwebp-dev \
-    libfreetype6-dev \
-    libopenjp2-7-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN python -m pip install --upgrade pip setuptools wheel
-
-COPY requirements.txt .
-RUN python -m pip install --no-cache-dir -r requirements.txt
-
-RUN python -m pip install --no-cache-dir --upgrade Pillow
-
+# Copy bot files
 COPY . /app
 
-CMD ["bash", "start.sh"]
+# Install deps
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8000
+
+# Start health server + ping script + bot
+CMD python3 app.py & python3 -m anony
