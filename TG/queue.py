@@ -13,7 +13,7 @@ def get_queue_markup(user_error=None):
             InlineKeyboardButton("⌜sᴜʙsᴄʀɪᴘᴛɪᴏɴ⌟", callback_data="isubs")
         ],
         [
-            InlineKeyboardButton("▏𝗖𝗟𝗢𝗦𝗘▕", callback_data="kclose"),
+            InlineKeyboardButton("▏𝗖𝗟𝗢𝗦𝗘▕", callback_data="close"),
             InlineKeyboardButton("𝗥𝗘𝗙𝗥𝗘𝗦𝗛 ⟳", callback_data="refresh_queue")
         ]
     ]
