@@ -105,7 +105,7 @@ def check_token_(func):
                             return await get_token(message, message.from_user.id)
                     else:
                         return await message.reply(
-                            f"<i> Verify Your Token First :- {tks[str(message.from_user.id)]['s_link']}</i>"
+                            f"<b>ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ[<a href={tks[str(message.from_user.id)]['s_link']}>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]\n\nʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ[<a href=https://t.me/+wekKcN1tjbAxY2U1>ᴛᴜᴛᴏʀɪᴀʟ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]"
                         )
                 else:
                     sts = await message.reply("<i>ㅤProcessing.....</i>")
