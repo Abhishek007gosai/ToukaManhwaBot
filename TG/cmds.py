@@ -138,8 +138,9 @@ async def start(client, message):
       sts = await message.reply("<i>ㅤProcessing.....</i>")
       return await verify_token(sts, user_id, token)
 
-  photo = random.choice(Vars.PICS)
-  ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
+photo = random.choice(Vars.PICS)
+ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
+
 await message.reply_photo(
     photo,
     caption=(
@@ -177,6 +178,7 @@ await message.reply_photo(
         ]
     )
 )
+
 
 
 
