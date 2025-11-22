@@ -140,27 +140,45 @@ async def start(client, message):
 
   photo = random.choice(Vars.PICS)
   ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
-  await message.reply_photo(
-      photo,
-      caption="<b><blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote></b>\n"
-       "<b>ʜᴏᴡ ᴛᴏ ᴜsᴇ? ɪᴜsᴛ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ sᴏᴍᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</b>\n"
-       "<b>ғᴏʀ ᴇxᴀᴍᴘʟᴇ:</b>\n"
-       "<i><code>One Piece</i></code>\n"
-       "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>\n"
-       "<b><blockquote>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</blockquote></b>"),
-      reply_markup=InlineKeyboardMarkup([
-          [  # SUPPORT (styled letters, each opens support link)
-              InlineKeyboardButton("⌜ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ sᴇᴛᴛɪɴɢs⌟", callback_data="mus"),
-          ],
-          [  # SETTINGS + CLOSE (styled full words)
-              InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/EternalsHelplineBot"),
-              InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ", url="https://t.me/MangaNexus"),
-          ],
-          [  # REPO (styled letters, all linked to repo)
-              InlineKeyboardButton("⌜ᴄʟᴏsᴇ⌟", callback_data="close"),
-          ]
-      ])
+await message.reply_photo(
+    photo,
+    caption=(
+        "<b><blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote></b>\n"
+        "<b>ʜᴏᴡ ᴛᴏ ᴜsᴇ? ɪᴜsᴛ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ sᴏᴍᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</b>\n"
+        "<b>ғᴏʀ ᴇxᴀᴍᴘʟᴇ:</b>\n"
+        "<i><code>One Piece</code></i>\n"
+        "<b>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</b>\n"
+        "<b><blockquote>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</blockquote></b>"
+    ),
+    reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "⌜ᴄᴏᴍᴍᴀɴᴅs ᴀɴᴅ sᴇᴛᴛɪɴɢs⌟",
+                    callback_data="mus"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "sᴜᴘᴘᴏʀᴛ",
+                    url="https://t.me/EternalsHelplineBot"
+                ),
+                InlineKeyboardButton(
+                    "ᴜᴘᴅᴀᴛᴇ",
+                    url="https://t.me/MangaNexus"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "⌜ᴄʟᴏsᴇ⌟",
+                    callback_data="close"
+                )
+            ]
+        ]
+    )
 )
+
+
 
 
 
