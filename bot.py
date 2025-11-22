@@ -34,7 +34,7 @@ class Vars:
   PING = time()
   
   SHORTENER = True
-  SHORTENER_API = "" # put {} for url, ex: shornter.api?url={}
+  SHORTENER_API = "https://shortxlinks.com/api?api=64d631b036df348caab852591a09288cbf5b6809&url={}" # put {} for url, ex: shornter.api?url={}
   DURATION = 20 # hrs
   
   FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><blockquote>Hᴇʟʟᴏ!! ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <a href=https://t.me/MangaNexus>ᴍᴀɴɢᴀ ɴᴇxᴜs</a></blockquote>Yᴏᴜ ɴᴇᴇᴅ ᴛᴏ Jᴏɪɴ ɪɴ ᴍʏ Cʜᴀɴɴᴇʟ/Gʀᴏᴜᴘ ғɪʀsᴛ, Pʟᴇᴀsᴇ sᴜʙsᴄʀɪʙᴇ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴛʜʀᴏᴜɢʜ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴀɴᴅ sᴛᴀʀᴛ ʙᴏᴛ ᴀɢᴀɪɴ</b>""")
