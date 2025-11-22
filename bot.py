@@ -13,12 +13,12 @@ class Vars:
   API_ID = int(os.environ.get("API_ID", "23537462"))
   API_HASH = os.environ.get("API_HASH", "c9599a5aa61ee8ca4f5e778d20c61f24")
   
-  BOT_TOKEN = "7686806902:AAHTCqnWmGvcgpCMLDRXldqb4bBW4dCFsxk"
+  BOT_TOKEN = ""
   plugins = dict(root="TG")
   
   LOG_CHANNEL = -1003089960436
   UPDATE_CHANNEL = -1001987570479
-  DB_URL = "mongodb+srv://Kafka:Au3OoWzCDYJKeuHU@cluster0.lz2m8iy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  DB_URL = ""
   
   PORT = 5000
   OWNER = int(os.environ.get("OWNER","7654385403"))
@@ -34,7 +34,7 @@ class Vars:
   PING = time()
   
   SHORTENER = True
-  SHORTENER_API = "https://shortxlinks.com/api?api=64d631b036df348caab852591a09288cbf5b6809&url={}" # put {} for url, ex: shornter.api?url={}
+  SHORTENER_API = "" # put {} for url, ex: shornter.api?url={}
   DURATION = 20 # hrs
   
   FORCE_SUB_TEXT = os.environ.get("FORCE_SUB_TEXT", """<b><blockquote>Hᴇʟʟᴏ!! ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <a href=https://t.me/MangaNexus>ᴍᴀɴɢᴀ ɴᴇxᴜs</a></blockquote>Yᴏᴜ ɴᴇᴇᴅ ᴛᴏ Jᴏɪɴ ɪɴ ᴍʏ Cʜᴀɴɴᴇʟ/Gʀᴏᴜᴘ ғɪʀsᴛ, Pʟᴇᴀsᴇ sᴜʙsᴄʀɪʙᴇ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴛʜʀᴏᴜɢʜ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴀɴᴅ sᴛᴀʀᴛ ʙᴏᴛ ᴀɢᴀɪɴ</b>""")
