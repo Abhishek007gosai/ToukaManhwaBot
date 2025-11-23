@@ -13,7 +13,7 @@ class Vars:
   API_ID = int(os.environ.get("API_ID", "23537462"))
   API_HASH = os.environ.get("API_HASH", "c9599a5aa61ee8ca4f5e778d20c61f24")
   
-  BOT_TOKEN = "7686806902:AAHXq9KTBq09-rmEFlTerHxhNsvzFiFIdqo"
+  BOT_TOKEN = "7845096754:AAEutjQ71s1PASmtvxoSYKZN7m3bjE3luVQ"
   plugins = dict(root="TG")
   
   LOG_CHANNEL = -1003089960436
