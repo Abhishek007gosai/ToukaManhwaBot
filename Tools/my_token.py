@@ -105,7 +105,7 @@ def check_token_(func):
                             return await get_token(message, message.from_user.id)
                     else:
                         return await message.reply(
-                            f"<b><blockquote>Your Ads token is expired, refresh your token and try again</blockquote>\nToken Timeout: 1 day \n\nᴡʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ??\nᴛʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ᴏᴜʀ ᴀʟʟ ʙᴏᴛs ғᴏʀ 1 day\n\nAPPLE/IPHONE USERS COPY TOKEN LINK AND OPEN IN CHROME BROWSER\n<blockquote expendable>We are adding a token system so that our work can continue. We aren't earning anything from this I hope you guys will still support us</blockquote expendable></a>\nʜᴇʟᴘᴅᴇsᴋ @EternalsHelplineBot\n★━━━━━━━━━━━━━━━━━⋞\n\nᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ[<a href={tks[str(message.from_user.id)]['s_link']}>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]\n\nʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ[<a href=https://t.me/+wekKcN1tjbAxY2U1>ᴛᴜᴛᴏʀɪᴀʟ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]</b>"
+                            f"<b><blockquote>ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ[<a href={tks[str(message.from_user.id)]['s_link']}>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]\n\nʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ[<a href=https://t.me/+wekKcN1tjbAxY2U1>ᴛᴜᴛᴏʀɪᴀʟ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]</b>"
                         )
                 else:
                     sts = await message.reply("<i>ㅤProcessing.....</i>")
