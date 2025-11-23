@@ -49,11 +49,8 @@ class Vars:
 ɴᴏᴡ ʙᴇ ᴀ ɢᴏᴏᴅ ʙᴏʏ ᴀɴᴅ sᴏʟᴠᴇ ɪᴛ ᴀɢᴀɪɴ, ᴀɴᴅ ᴛʜɪs ᴛɪᴍᴇ ᴅᴏɴ'ᴛ ɢᴇᴛ sᴍᴀʀᴛ !! 🌚💭</b></blockquote>""")
 
   PICS = (
-    "https://img3.teletype.in/files/67/73/67735f4f-933a-41d9-86b9-609fa03b6614.jpeg",
-    "https://img3.teletype.in/files/a6/b6/a6b666ef-afa0-4793-bd6b-235265258840.jpeg",
-"https://i.ibb.co/q6QhS4F/tmpveifn0uy.jpg",
-    "https://litter.catbox.moe/uq7ichhhh9dz7rg0.jpg",
-  
+    "https://i.ibb.co/q6QhS4F/tmpveifn0uy.jpg",
+    "https://litter.catbox.moe/uq7ichhhh9dz7rg0.jpg", 
   )
 
 
