@@ -143,11 +143,11 @@ async def start(client, message):
   await message.reply_photo(
       photo,
       caption=
-      ("<b><blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote></b>\n"
-            "<b>ʜᴏᴡ ᴛᴏ ᴜsᴇ? ɪᴜsᴛ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ sᴏᴍᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</b>\n"
+      ("<b><blockquote expendeble>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote expendeble></b>\n"
+            "<b>ʜᴏᴡ ᴛᴏ ᴜsᴇ? ᴊᴏɪɴ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ sᴏᴍᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</b>\n"
             "<b>ғᴏʀ ᴇxᴀᴍᴘʟᴇ:</b>\n"
             "<i><code>One Piece</code></i>\n"  
-            "<b><blockquote>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</blockquote></b>\n"
+            "<b><blockquote>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ \n❏ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs\n├/help : ᴄʟɪᴄᴋ ʜᴇʀᴇ</blockquote></b>\n"
             "<b>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</b>"),
       reply_markup=InlineKeyboardMarkup([
           [  # SUPPORT (styled letters, each opens support link)
