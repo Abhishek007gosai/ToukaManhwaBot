@@ -178,7 +178,7 @@ async def get_token(message, user_id):
     ])
     
     try:
-        await message.edit_text("<i>Invalid or expired token. Here is your new token link. Click the button below to use it.\n\n **Valid Till 1 days.**</i>", reply_markup=keyboard)
+        await message.edit_text("<b><blockquote>Your Ads token is expired, refresh your token and try again</blockquote>\nᴛᴏᴋᴇɴ ᴛɪᴍᴇᴏᴜᴛ: 𝟷 ᴅᴀʏ\n\nᴡʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ??\nᴛʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ᴏᴜʀ ᴀʟʟ ʙᴏᴛs ғᴏʀ 𝟷 ᴅᴀʏ\n\nAPPLE/IPHONE USERS COPY TOKEN LINK AND OPEN IN CHROME BROWSER\n<blockquote expendable>We are adding a token system so that our work can continue. We aren't earning anything from this I hope you guys will still support us</blockquote expendable></a>\nʜᴇʟᴘᴅᴇsᴋ @EternalsHelplineBot</b>", reply_markup=keyboard)
     except FloodWait as e:
         await asyncio.sleep(e.value + 2)
-        await message.edit_text("<i>Invalid or expired token. Here is your new token link. Click the button below to use it.\n\n **Valid Till 1 days.**</i>", reply_markup=keyboard)
+        await message.edit_text("<b><blockquote>Your Ads token is expired, refresh your token and try again</blockquote>\nᴛᴏᴋᴇɴ ᴛɪᴍᴇᴏᴜᴛ: 𝟷 ᴅᴀʏ\n\nᴡʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ??\nᴛʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ᴏᴜʀ ᴀʟʟ ʙᴏᴛs ғᴏʀ 𝟷 ᴅᴀʏ\n\nAPPLE/IPHONE USERS COPY TOKEN LINK AND OPEN IN CHROME BROWSER\n<blockquote expendable>We are adding a token system so that our work can continue. We aren't earning anything from this I hope you guys will still support us</blockquote expendable></a>\nʜᴇʟᴘᴅᴇsᴋ @EternalsHelplineBot</b>", reply_markup=keyboard)
