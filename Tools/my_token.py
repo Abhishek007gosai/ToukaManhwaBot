@@ -105,7 +105,7 @@ def check_token_(func):
                             return await get_token(message, message.from_user.id)
                     else:
                         return await message.reply(
-                            f"<b><blockquote>Your Ads token is expired, refresh your token and try again</blockquote>\nToken Timeout: 1 day \n\nᴡʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ??\nᴛʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ᴏᴜʀ ᴀʟʟ ʙᴏᴛs ғᴏʀ {get_exp_time(VERIFY_EXPIRE)}\n\nAPPLE/IPHONE USERS COPY TOKEN LINK AND OPEN IN CHROME BROWSER\n<blockquote expendable>We are adding a token system so that our work can continue. We aren't earning anything from this I hope you guys will still support us</blockquote expendable></a>\nʜᴇʟᴘᴅᴇsᴋ @EternalsHelplineBot\n★━━━━━━━━━━━━━━━━━⋞\n\nᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ[<a href={tks[str(message.from_user.id)]['s_link']}>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]\n\nʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ[<a href=https://t.me/+wekKcN1tjbAxY2U1>ᴛᴜᴛᴏʀɪᴀʟ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]</b>"
+                            f"<b><blockquote>Your Ads token is expired, refresh your token and try again</blockquote>\nToken Timeout: 1 day \n\nᴡʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ??\nᴛʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ᴏᴜʀ ᴀʟʟ ʙᴏᴛs ғᴏʀ 1 day\n\nAPPLE/IPHONE USERS COPY TOKEN LINK AND OPEN IN CHROME BROWSER\n<blockquote expendable>We are adding a token system so that our work can continue. We aren't earning anything from this I hope you guys will still support us</blockquote expendable></a>\nʜᴇʟᴘᴅᴇsᴋ @EternalsHelplineBot\n★━━━━━━━━━━━━━━━━━⋞\n\nᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғʏ ʏᴏᴜʀ ᴛᴏᴋᴇɴ[<a href={tks[str(message.from_user.id)]['s_link']}>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]\n\nʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ[<a href=https://t.me/+wekKcN1tjbAxY2U1>ᴛᴜᴛᴏʀɪᴀʟ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>]</b>"
                         )
                 else:
                     sts = await message.reply("<i>ㅤProcessing.....</i>")
@@ -130,11 +130,11 @@ async def verify_token(message, user_id, token):
                     return await message.edit("<i> Token verified. Now, You Can Use Me</i>")
                 else: 
                     keyboard = InlineKeyboardMarkup([
-                        [InlineKeyboardButton("🖥 Get Token 🖥", url=token_data['s_link'])],
-                        [InlineKeyboardButton("📺 Watch Tutorial 📺", url="https://t.me/+KymUiadSyutiZjM1")],
+                        [InlineKeyboardButton("» ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ «", url=token_data['s_link'])],
+                        [InlineKeyboardButton("» ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ/ᴠɪᴅᴇᴏ ᴛᴜᴛᴏʀɪᴀʟ «", url="https://t.me/+wekKcN1tjbAxY2U1")],
                         [
-                            InlineKeyboardButton("💸 Bot Premuim 💸", callback_data="premuim"),
-                            InlineKeyboardButton("⛓️‍💥 Close ⛓️‍💥", callback_data="close")
+                            InlineKeyboardButton("ᴘʀᴇᴍɪᴜᴍ", callback_data="premuim"),
+                            InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")
                         ],
                     ])
                     
@@ -168,13 +168,13 @@ async def get_token(message, user_id):
     short_token_link = get_short(token_link)
     save_token(user_id, new_token, message.id, message.chat.id, short_token_link)
     
-    button = InlineKeyboardButton("🖥 Get Token 🖥", url=short_token_link)
-    button2 = InlineKeyboardButton("📺 Watch Tutorial 📺", url="https://t.me/+KymUiadSyutiZjM1")
+    button = InlineKeyboardButton("» ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ «", url=short_token_link)
+    button2 = InlineKeyboardButton("» ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ/ᴠɪᴅᴇᴏ ᴛᴜᴛᴏʀɪᴀʟ «", url="https://t.me/+wekKcN1tjbAxY2U1")
     keyboard = InlineKeyboardMarkup([
         [button],
         [button2],
-        [InlineKeyboardButton("💸 Bot Premuim 💸", callback_data="premuim")],
-        [InlineKeyboardButton("⛓️‍💥 Close ⛓️‍💥", callback_data="close")],
+        [InlineKeyboardButton("ᴘʀᴇᴍɪᴜᴍ", callback_data="premuim")],
+        [InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")],
     ])
     
     try:
