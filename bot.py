@@ -50,8 +50,7 @@ class Vars:
 
   PICS = (
     "https://i.ibb.co/q6QhS4F/tmpveifn0uy.jpg",
-    "https://litter.catbox.moe/uq7ichhhh9dz7rg0.jpg"
-    
+    "https://litter.catbox.moe/uq7ichhhh9dz7rg0.jpg"    
   )
 
 
