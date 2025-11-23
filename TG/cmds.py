@@ -146,8 +146,7 @@ async def start(client, message):
       ("<b><blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴜᴘᴘᴏʀᴛ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ ʏᴏᴜ ᴄᴀɴ ᴅᴏ sᴏ ʙʏ sᴜʙsᴄʀɪʙɪɴɢ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ</blockquote></b>\n"
             "<b>ʜᴏᴡ ᴛᴏ ᴜsᴇ? ɪᴜsᴛ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ sᴏᴍᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</b>\n"
             "<b>ғᴏʀ ᴇxᴀᴍᴘʟᴇ:</b>\n"
-            "<i><code>One Piece</code></i>\n"
-            "<b><i>ᴘɪɴɢ {ping}</i></b>"
+            "<i><code>One Piece</code></i>\n"  
             "<b><blockquote>ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴄʟɪᴄᴋ ʜᴇʀᴇ /help</blockquote></b>\n"
             "<b>ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ @EternalsHelplineBot</b>"),
       reply_markup=InlineKeyboardMarkup([
