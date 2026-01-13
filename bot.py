@@ -21,8 +21,8 @@ class Vars:
   DB_URL = ""
   
   PORT = 5000
-  OWNER = int(os.environ.get("OWNER","7654385403"))
-  ADMINS = os.environ.get("ADMINS", "7654385403")
+  OWNER = int(os.environ.get("OWNER","8226767954"))
+  ADMINS = os.environ.get("ADMINS", "8226767954")
   ADMINS = [int(admin) for admin in (ADMINS).split(" ")]
   ADMINS.append(OWNER)
   
@@ -33,7 +33,7 @@ class Vars:
   DB_NAME = "cluster0"
   PING = time()
   
-  SHORTENER = True
+  SHORTENER = False
   SHORTENER_API = 'shortxlinks.com/api?api=64d631b036df348caab852591a09288cbf5b6809&url={}' # put {} for url, ex: shornter.api?url={}
   DURATION = 20 # hrs
   
