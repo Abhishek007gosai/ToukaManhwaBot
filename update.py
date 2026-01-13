@@ -2,10 +2,10 @@
 from os import path as ospath
 from subprocess import run as srun
 
-UPSTREAM_REPO = "https://github.com/Abhishek007gosai/ToukaManhwaBot"  # SSH URL for private repo
+UPSTREAM_REPO = ""  # SSH URL for private repo
 UPSTREAM_BRANCH = "master"
 GITHUB_EMAIL = ""
-GITHUB_USERNAME = "Abhishek007gosai"
+GITHUB_USERNAME = ""
 
 if UPSTREAM_REPO is not None:
     if ospath.exists(".git"):
