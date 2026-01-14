@@ -13,12 +13,12 @@ class Vars:
   API_ID = int(os.environ.get("API_ID", "23537462"))
   API_HASH = os.environ.get("API_HASH", "c9599a5aa61ee8ca4f5e778d20c61f24")
   
-  BOT_TOKEN = "7686806902:AAGJEVhy7t9qMZE6T7BCE3O6I7AMKGH1xmA"
+  BOT_TOKEN = ""
   plugins = dict(root="TG")
   
   LOG_CHANNEL = -1003089960436
   UPDATE_CHANNEL = -1001987570479
-  DB_URL = "mongodb+srv://hanxsooyoung:qGsVMuuKjE12Gewz@cluster0.oooqdg5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  DB_URL = ""
   
   PORT = 5000
   OWNER = int(os.environ.get("OWNER","8226767954"))
